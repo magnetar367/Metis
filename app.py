@@ -1,8 +1,6 @@
 from tkinter import *
 from main import get_response
-BG_GRAY = "#ABB2B9"
-BG_COLOR = "#17202A"
-TEXT_COLOR = "#EAECEE"
+
 
 FONT = "ComicSans 12"
 FONT_BOLD = "ComicSans 14 bold"
@@ -16,16 +14,9 @@ photo=PhotoImage(file='2.png')
 splash_label = Label(splash_root, text="Splash Screen", font=18,image=photo)
 splash_label.pack()
 
-
-
-
 def main():
     # destory splash window
     splash_root.destroy()
-
-
-
-
 
 # Set Interval
 splash_root.after(5000, main)
@@ -45,7 +36,7 @@ class ChatApplication:
     def _setup_main_window(self):
         self.window.title("Chat")
         self.window.resizable(width=False, height=False)
-        self.window.configure(width=470, height=550, bg=BG_COLOR)
+        self.window.configure(width=470, height=550, bg="#17202A")
 
         #headlabel
         head_label = Label(self.window, bg="gray20", fg="lawn green", text="Virtual Chat Assistent", font=FONT, pady=10)
@@ -78,9 +69,11 @@ class ChatApplication:
         #send button
         send_button = Button(bottom_label, text="Send", font=FONT_BOLD, width=25, bg="grey11",fg= "lawn green", command= lambda: self._on_enter_pressed(None))
         send_button.place(relx=.77, rely=0.0185, relheight=0.04, relwidth= 0.22)
+
     def _on_enter_pressed(self, event):
         msg= self.msg_entry.get()#this gets the input text as a string
         self._insert_message(msg, "You")
+
     def _insert_message(self, msg, sender):
         if not msg:
             return

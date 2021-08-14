@@ -17,8 +17,7 @@ def get_response(msg):#~Fixed
         return "I'm fine!!!"
     elif msg.lower()[0] == "h" and msg.lower().split(" ")[0]!="hear":
         return ab.greeting()
-    elif "what" in msg.lower().split()[0] and msg[-1] == "?":
-        return ab.powers()
+
     # Performing the activities
 
     if choice == 1:#Opening website
