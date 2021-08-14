@@ -6,6 +6,32 @@ TEXT_COLOR = "#EAECEE"
 
 FONT = "ComicSans 12"
 FONT_BOLD = "ComicSans 14 bold"
+splash_root = Tk()
+
+# Adjust size
+splash_root.geometry("470x491")
+
+# Set Label
+photo=PhotoImage(file='2.png')
+splash_label = Label(splash_root, text="Splash Screen", font=18,image=photo)
+splash_label.pack()
+
+
+
+
+def main():
+    # destory splash window
+    splash_root.destroy()
+
+
+
+
+
+# Set Interval
+splash_root.after(5000, main)
+
+# Execute tkinter
+mainloop()
 
 class ChatApplication:
 
