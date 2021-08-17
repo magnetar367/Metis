@@ -1,7 +1,6 @@
 from tkinter import *
 from main import get_response
 
-
 FONT = "ComicSans 12"
 FONT_BOLD = "ComicSans 14 bold"
 splash_root = Tk()
@@ -34,12 +33,12 @@ class ChatApplication:
         self.window.mainloop()
 
     def _setup_main_window(self):
-        self.window.title("Chat")
+        self.window.title("~Metis")
         self.window.resizable(width=False, height=False)
         self.window.configure(width=470, height=550, bg="#17202A")
 
         #headlabel
-        head_label = Label(self.window, bg="gray20", fg="lawn green", text="Virtual Chat Assistent", font=FONT, pady=10)
+        head_label = Label(self.window, bg="gray20", fg="lawn green", text="Virtual Chat Assistant", font=FONT, pady=10)
         head_label.place(relwidth=1)
 
         #tiny divider
@@ -89,6 +88,8 @@ class ChatApplication:
         self.text_widget.configure(state=DISABLED)
 
         self.text_widget.see(END)
+
 if __name__ == "__main__":
     app = ChatApplication()
     app.run()
+    
