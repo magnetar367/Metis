@@ -13,9 +13,9 @@ def get_response(msg):#~Fixed
         else:
             break
 
-    if msg.lower()[0] == "h" and msg.lower().split(" ")[0]!="hear" and msg[-1] == "?":
-        return "I'm fine!!!"
-    elif msg.lower()[0] == "h" and msg.lower().split(" ")[0]!="hear":
+    if "how" in msg.lower().split(" ")[0] or "what" in msg.lower().split(" ")[0] and msg[-1] == "?":
+        return ab.feeling()
+    elif len(msg.lower())>=2 and msg.lower()[0] in "hy" and msg.lower().split(" ")[0]!="hear":
         return ab.greeting()
 
     # Performing the activities
