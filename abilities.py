@@ -42,6 +42,9 @@ def gratitude():
 
 def greeting():
     return random.choice(greetings)
+
+def feeling():
+    return random.choice(feelings)
 #Removing unneccessary special characters for search algo
 
 chrbrwser = ["chr","google"]
@@ -74,7 +77,7 @@ keyword =     {1: ["open","access","take me","enter","1"],
                6: ["leave", "bye", "good night", "seeya", "take care", "close", "terminate", "stop", "nothing",
                     "leaving", "going" , "ttyl"],
                7:["powers", "abilities", "features","what can yo do", "what have you got?"],
-               8:["great","awsome","fantastic","thank you","thanks","wow","cool","best"],
+               8:["great","awsome","fantastic","thank you","thanks","wow","cool","best","good","nice"],
                #9:["hey","hai","hello","Whats up?", "hi","how are you"]
                }
 
@@ -82,7 +85,7 @@ gratitudes=["I'm so excited to do more;)","My plesaure_/\\_","Always at your ser
 
 greetings=["Heyyy!","Nice to meet you earthling.","Hai","Hey there!","hi"]
 
-
+feelings=["Im fine!" , "Better than ever!", "Never felt better!" , "Always beter than before"]
 
 
 
