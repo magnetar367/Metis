@@ -1,3 +1,4 @@
+
 #Metis abilities
 import webbrowser
 import pywhatkit
@@ -78,8 +79,10 @@ keyword =     {1: ["open","access","take me","enter","1"],
                     "leaving", "going" , "ttyl"],
                7:["powers", "abilities", "features","what can yo do", "what have you got?"],
                8:["great","awsome","fantastic","thank you","thanks","wow","cool","best","good","nice"],
-               #9:["hey","hai","hello","Whats up?", "hi","how are you"]
-               }
+               9:["add","append","insert"]
+              10:["create"]
+              11:["delete","remove"]
+              12:["todo"]}
 
 gratitudes=["I'm so excited to do more;)","My plesaure_/\\_","Always at your service:D","You are welcome:)"]
 
@@ -87,8 +90,27 @@ greetings=["Heyyy!","Nice to meet you earthling.","Hai","Hey there!","hi"]
 
 feelings=["Im fine!" , "Better than ever!", "Never felt better!" , "Always beter than before"]
 
-
-
+'''
+def append(msg):
+    for  i in range(len(msg.split(" "))):
+        if i in ["add","insert","append"]:
+            msg = msg[i:]
+    with open("todo","a") as f:
+        f.write(msg)
+      
+def read(msg):
+    with open("todo","r+") as f:
+        f.read()
+     
+def delete(msg):
+    del_data = [x for x in msg.split()]
+    with open("todo","w") as f:
+'''        
+        
+        
+        
+        
+        
 
 
 
