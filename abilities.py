@@ -89,12 +89,12 @@ keyword =     {1: ["open","access","take me","enter","1"],
                6: ["leave", "bye", "good night", "seeya", "take care", "close", "terminate", "stop", "nothing",
                     "leaving", "going" , "ttyl"],
                7:["powers", "abilities", "features","what can yo do", "what have you got?"],
-               9:["create"],
-               10:["add","insert","append","put"],
-               11:["delete","remove"],
-               12:["show","read","display","todo"],
-               13:["modify","replace","change","convert"],
-                8:["great","awesome","fantastic","thank you","thanks","wow","cool","best","good","nice","excellent","perfect"],
+               8:["create"],
+               9:["add","insert","append","put"],
+               10:["delete","remove"],
+               11:["show","read","display","todo"],
+               12:["modify","replace","change","convert"],
+               13:["great","awesome","fantastic","thank","wow","cool","best","good","nice","excellent","perfect"],
                }
 
 gratitudes=["I'm so excited to do more;)",r"My pleasure_/\_","Always at your service:D","You are welcome:)"]
