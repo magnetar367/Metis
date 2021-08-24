@@ -6,17 +6,17 @@ def get_response(msg):#~Fixed
     for i in ab.keyword:
         if choice == 0:
             for j in ab.keyword[i]:
-                if j in msg.lower():
+                if j in msg.lower().split():
                     choice = i
                     keyword = j #for future purposes like choice 1
                     break
         else:
             break
-
-    if "how" in msg.lower().split(" ")[0] or "what" in msg.lower().split(" ")[0] and msg[-1] == "?":
-        return ab.feeling()
-    elif len(msg.lower())>=2 and msg.lower()[0] in "hy" and msg.lower().split(" ")[0]!="hear":
-        return ab.greeting()
+    else:
+        if "how"==msg.lower().split(" ")[0] or "what" in msg.lower().split(" ")[0] and msg[-1] == "?":
+            return ab.feeling()
+        elif len(msg.lower())>=2 and msg.lower()[0] in "hy" and msg.lower().split(" ")[0]!="hear":
+            return ab.greeting()
 
     # Performing the activities
 
@@ -65,5 +65,21 @@ def get_response(msg):#~Fixed
     elif choice == 8:#Gratitudes~Fixed
         return ab.gratitude()
 
+    elif choice == 9:
+        return ab.create()
+
+    elif choice == 10:
+        return ab.add(msg)
+
+    elif choice == 11:
+        return ab.delete(msg)
+
+    elif choice == 12:
+        return ab.todo()
+
+    elif choice == 13:
+        unnec_w =["with","to","into"]
+        imp_data=[x for x in msg.lower().split()[msg.lower().split().index(keyword)+1:] if x not in unnec_w]
+        return ab.mod(imp_data)
     else:
         return ab.dont_know()
