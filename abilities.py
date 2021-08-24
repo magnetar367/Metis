@@ -1,9 +1,9 @@
-
 #Metis abilities
 import webbrowser
 import pywhatkit
 import datetime
 import random
+import os
 
 #1) Abilities Using webbrowser
 
@@ -58,7 +58,14 @@ def dont_know():
                  3: "To google search something",
                  4: "Show you today\'s highlights and updates",
                  5: "Display current date and time",
+                 6: "Create a todo_list",        
+                 7: "Read from that created list"
+                 8: "Add elements to it"         
+                 9: "Delete elements from it"    
+                 10: "Do modifications like changing the spelling of a word or replacing the entire word"
                     '''
+
+
     return tasklist
 def powers():
     tasklist = '''Here is a list of what I can do
@@ -66,7 +73,11 @@ def powers():
                     2: "Fill your ears with some sick music",
                     3: "To google search something",
                     4: "Show you today\'s highlights and updates",
-                    5: "Display current date and time",
+                    5: "Display current date and time"
+                    6: "Create a todo_list",
+                    7: "Read from that created list"
+                    8: "Add elements to it"
+                    9: "Delete elements from it"
                        '''
     return tasklist
 #Keyword List
@@ -78,39 +89,66 @@ keyword =     {1: ["open","access","take me","enter","1"],
                6: ["leave", "bye", "good night", "seeya", "take care", "close", "terminate", "stop", "nothing",
                     "leaving", "going" , "ttyl"],
                7:["powers", "abilities", "features","what can yo do", "what have you got?"],
-               8:["great","awsome","fantastic","thank you","thanks","wow","cool","best","good","nice"],
-               9:["add","append","insert"]
-              10:["create"]
-              11:["delete","remove"]
-              12:["todo"]}
+               9:["create"],
+               10:["add","insert","append","put"],
+               11:["delete","remove"],
+               12:["show","read","display","todo"],
+               13:["modify","replace","change","convert"],
+                8:["great","awesome","fantastic","thank you","thanks","wow","cool","best","good","nice","excellent","perfect"],
+               }
 
-gratitudes=["I'm so excited to do more;)","My plesaure_/\\_","Always at your service:D","You are welcome:)"]
+gratitudes=["I'm so excited to do more;)",r"My pleasure_/\_","Always at your service:D","You are welcome:)"]
 
 greetings=["Heyyy!","Nice to meet you earthling.","Hai","Hey there!","hi"]
 
-feelings=["Im fine!" , "Better than ever!", "Never felt better!" , "Always beter than before"]
+feelings=["Im fine!" , "Better than ever!", "Never felt better!" , "Always better than before"]
 
-'''
-def append(msg):
-    for  i in range(len(msg.split(" "))):
-        if i in ["add","insert","append"]:
-            msg = msg[i:]
-    with open("todo","a") as f:
-        f.write(msg)
-      
-def read(msg):
-    with open("todo","r+") as f:
-        f.read()
-     
+def todo():#choice 12
+    with open(r"todo") as f:
+        return f.read() if os.stat("todo").st_size!=0 else "The list is empty. There is nothing to display here"
+
+def add(msg):
+    for i in msg.split():
+        if i.lower() in ["add","insert","append","put"]:
+            keyword=i.lower()
+            with open("todo","a") as f:
+                w = msg.split()
+                f.write("--->"+' '.join(x for x in w[(w.index(keyword)+1):])+"\n")
+            return "Added "+' '.join(x for x in w[(w.index(keyword)+1):])
+
 def delete(msg):
-    del_data = [x for x in msg.split()]
-    with open("todo","w") as f:
-'''        
-        
-        
-        
-        
-        
+    for i in msg.split():
+        if i.lower() in ["delete","remove"]:
+            keyword=i
+            with open("todo","r") as f:
+                w = msg.split()
+                d = " ".join(x for x in w[(w.index(keyword)+1):])
+                new_data = ' '.join(x for x in f.readlines() if d not in x)
+            with open("todo","w") as g:
+                g.write(new_data)
+            return "Deleted "+d
+        elif "all" in msg.lower().split():
+            f = open("todo", "w+")
+            f.close()
+            return "Deleted all elements"
+
+
+def create():
+    f=open("todo","w+")
+    f.close()
+    return "List created. You can now start adding elements. Once you are done, you can read it, delete items and do other necessary actions"
+
+def mod(imp_data):
+    with open(r"todo") as f:
+        new_text=" ".join(x+"\n" if imp_data[0] not in x else "--->"+imp_data[1]+"\n" for x in f.read().split())
+    with open("todo","w+") as f:
+        f.write(new_text)
+    return todo()
+
+
+
+
+
 
 
 
