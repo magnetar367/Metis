@@ -12,7 +12,7 @@ def get_response(msg):#~Fixed
                     break
     else:
         if choice==0:
-            if "how" == msg.lower().split(" ")[0] or "what" in msg.lower().split(" ")[0] and msg[-1] == "?":
+            if "how" == msg.lower() or "what" in msg.lower() and "?" in msg:
                 return ab.feeling()
             elif len(msg.lower()) >= 2 and msg.lower()[0] in "hy" and msg.lower().split(" ")[0] != "hear":
                 return ab.greeting()
@@ -81,4 +81,4 @@ def get_response(msg):#~Fixed
         imp_data=[x for x in msg.lower().split()[msg.lower().split().index(keyword)+1:] if x not in unnec_w]
         return ab.mod(imp_data)
     else:
-        return ab.dont_k
+        return ab.dont_know()
