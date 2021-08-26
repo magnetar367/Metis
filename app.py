@@ -37,7 +37,7 @@ def main():
     splash_root.destroy()
 
 # Set Interval
-splash_root.after(1000, main)
+splash_root.after(2000, main)
 
 mainloop()
 
