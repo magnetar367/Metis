@@ -8,20 +8,31 @@ def get_response(msg):#~Fixed
             for j in ab.keyword[i]:
                 if j in msg.lower():
                     choice = i
-                    keyword = j #for future purposes like choice 1
+                    key = j #for future purposes like choice 1
                     break
     else:
-        if choice==0:
-            if "how" == msg.lower() or "what" in msg.lower() and "?" in msg:
+        for z in ab.nonab_key:
+            if choice == 0:
+                for j in ab.nonab_key[z]:
+                    if j in msg.lower():
+                        choice = z
+                        break
+
+        if choice == 0:
+            if ("how" in msg.lower() or "what" in msg.lower()) and "?" in msg:
                 return ab.feeling()
             elif len(msg.lower()) >= 2 and msg.lower()[0] in "hy" and msg.lower().split(" ")[0] != "hear":
                 return ab.greeting()
+
+
+
+
 
     # Performing the activities
 
     if choice == 1:#Opening website
         keys=[x for x in msg.lower().split(" ")]
-        kindex = keys.index(keyword)+1
+        kindex = keys.index(key) + 1
         website = ''.join([x for x in keys[kindex:]])
 
 
@@ -78,7 +89,7 @@ def get_response(msg):#~Fixed
 
     elif choice == 12:
         unnec_w =["with","to","into"]
-        imp_data=[x for x in msg.lower().split()[msg.lower().split().index(keyword)+1:] if x not in unnec_w]
+        imp_data=[x for x in msg.split()[msg.lower().split().index(key) + 1:] if x not in unnec_w]
         return ab.mod(imp_data)
     else:
         return ab.dont_know()
