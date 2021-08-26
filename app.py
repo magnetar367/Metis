@@ -1,16 +1,35 @@
 from tkinter import *
 from main import get_response
+import pyglet
 
-FONT = "ComicSans 12"
-FONT_BOLD = "ComicSans 14 bold"
+
+
+animation= pyglet.image.load_animation('7a9b8077fd3b55d8ab72bdb6864f9448.gif')
+sprite = pyglet.sprite.Sprite(img=animation)
+w=sprite.width
+h=sprite.height
+window = pyglet.window.Window(width=w,height=h)
+
+@window.event
+def on_draw():
+    window.clear()
+    sprite.draw()
+@window.event
+def close_pyglet(dt):
+    window.close()
+
+pyglet.clock.schedule_once(close_pyglet, 6)
+
+pyglet.app.run()
+
+
 splash_root = Tk()
-
-# Adjust size
+splash_root.title('virtual chat assistant')
 splash_root.geometry("470x491")
 
 # Set Label
-photo=PhotoImage(file='2.png')
-splash_label = Label(splash_root, text="Splash Screen", font=18,image=photo)
+photo= PhotoImage(file='2.png')
+splash_label = Label(splash_root, text="Splash Screen", font=18 ,image=photo)
 splash_label.pack()
 
 def main():
@@ -18,9 +37,8 @@ def main():
     splash_root.destroy()
 
 # Set Interval
-splash_root.after(5000, main)
+splash_root.after(1000, main)
 
-# Execute tkinter
 mainloop()
 
 class ChatApplication:
@@ -38,7 +56,7 @@ class ChatApplication:
         self.window.configure(width=470, height=550, bg="#17202A")
 
         #headlabel
-        head_label = Label(self.window, bg="gray20", fg="lawn green", text="Virtual Chat Assistant", font=FONT, pady=10)
+        head_label = Label(self.window, bg="gray20", fg="lawn green", text="Virtual Chat Assistant", font="ComicSans 12", pady=10)
         head_label.place(relwidth=1)
 
         #tiny divider
@@ -46,7 +64,7 @@ class ChatApplication:
         line.place(rely=0.07, relheight=0.012)
 
         #text widget
-        self.text_widget= Text(self.window, width= 20, height=2, bg="grey11", fg="lawn green", font=FONT, padx=5, pady=5)
+        self.text_widget= Text(self.window, width= 20, height=2, bg="grey11", fg="lawn green", font="ComicSans 12", padx=5, pady=5)
         self.text_widget.place(relheight=0.745, relwidth=1, rely=0.08)#0.745
         self.text_widget.configure(cursor="arrow",state=DISABLED)
 
@@ -60,13 +78,13 @@ class ChatApplication:
         bottom_label.place(relwidth=1, rely=0.825)
 
         #message entry box
-        self.msg_entry = Entry(bottom_label, bg="gray12", fg="lawn green", font=FONT)#bg for entry box bg and fg for text inside it
+        self.msg_entry = Entry(bottom_label, bg="gray12", fg="lawn green", font="ComicSans 12")#bg for entry box bg and fg for text inside it
         self.msg_entry.place(relwidth=.74, relheight=0.04, rely=0.0185, relx=0.011)
         self.msg_entry.focus()
         self.msg_entry.bind("<Return>", self._on_enter_pressed)
 
         #send button
-        send_button = Button(bottom_label, text="Send", font=FONT_BOLD, width=25, bg="grey11",fg= "lawn green", command= lambda: self._on_enter_pressed(None))
+        send_button = Button(bottom_label, text="Send", font="ComicSans 12", width=25, bg="grey11",fg= "lawn green", command= lambda: self._on_enter_pressed(None))
         send_button.place(relx=.77, rely=0.0185, relheight=0.04, relwidth= 0.22)
 
     def _on_enter_pressed(self, event):
@@ -92,4 +110,3 @@ class ChatApplication:
 if __name__ == "__main__":
     app = ChatApplication()
     app.run()
-    
