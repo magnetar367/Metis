@@ -37,7 +37,7 @@ def main():
     splash_root.destroy()
 
 # Set Interval
-splash_root.after(3000, main)
+splash_root.after(5000, main)
 
 mainloop()
 
@@ -56,7 +56,7 @@ class ChatApplication:
         self.window.configure(width=470, height=550, bg="#17202A")
 
         #headlabel
-        head_label = Label(self.window, bg="gray20", fg="lawn green", text="Virtual Chat Assistant", font="ComicSans 12", pady=10)
+        head_label = Label(self.window, bg="gray16", fg="lawn green", text="Virtual Chat Assistant", font="ComicSans 12", pady=10)
         head_label.place(relwidth=1)
 
         #tiny divider
@@ -74,7 +74,7 @@ class ChatApplication:
         scrollbar.configure(command=self.text_widget.yview)
 
         #bottom label
-        bottom_label = Label(self.window, bg="grey20", height= 80)
+        bottom_label = Label(self.window, bg="grey16", height= 80)
         bottom_label.place(relwidth=1, rely=0.825)
 
         #message entry box

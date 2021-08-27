@@ -4,7 +4,7 @@ import pywhatkit
 import datetime
 import random
 import os
-from tkinter import *
+
 #1) Abilities Using webbrowser
 
 def search(website):
@@ -82,11 +82,11 @@ def powers():
     return tasklist
 #Keyword List
 
-keyword =     {1: ["open","access","take me","enter","1"],
-               2: ["hear","listen","play",'2'],
-               3: ["google","search",'3'],
-               4: ["highlights", "updates", "news", "4"],
-               5: ["date", "time", "6"],
+keyword =     {1: ["open","access","take me","enter"],
+               2: ["hear","listen","play"],
+               3: ["google","search"],
+               4: ["highlights", "updates", "news"],
+               5: ["date", "time"],
                7:["powers", "abilities", "features","what can you do", "what have you got"],
                8:["create"],
                9:["add","insert","append","put"],
