@@ -31,18 +31,12 @@ def get_response(msg):#~Fixed
     # Performing the activities
 
     if choice == 1:#Opening website
-        keys=[x for x in msg.lower().split(" ")]
-        kindex = keys.index(key) + 1
-        website = ''.join([x for x in keys[kindex:]])
-
-
-        ab.search(website)
-
-
-        return "Website opened!!!"
+        website=lambda x:"".join(i for i in x[x.index(key)+1:])
+        ab.search(website(msg.lower().split()))
+        return "Website Opened!!!"
 
     elif choice == 2:#Playing Music
-        song =' '.join([x for x in msg.split(" ") if x not in "listentoplaymusic"])
+        song =' '.join(x for x in msg.split(" ") if x not in "listentoplaymusic")
         ab.music(song)
         return "Hope you were able to listen to the music"
 
@@ -54,7 +48,7 @@ def get_response(msg):#~Fixed
         except:
             sindex = keys.index("search") + 1
             post = keys[sindex:]
-        site = ' '.join([x for x in post])
+        site = ' '.join(x for x in post)
         ab.googlesearch(site)
         return "searched for you!!!"
 
@@ -88,6 +82,7 @@ def get_response(msg):#~Fixed
         return ab.todo()
 
     elif choice == 12:
+
         unnec_w =["with","to","into"]
         imp_data=[x for x in msg.split()[msg.lower().split().index(key) + 1:] if x not in unnec_w]
         return ab.mod(imp_data)

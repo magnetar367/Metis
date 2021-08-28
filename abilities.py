@@ -4,15 +4,13 @@ import pywhatkit
 import datetime
 import random
 import os
-
+from selenium import webdriver
 #1) Abilities Using webbrowser
 
 def search(website):
-    url = f"{website}.com"
-    chromepath = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-    webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chromepath))
-    return webbrowser.get("chrome").open_new(url)
-
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(f"https://www.{website}.com")
 
 def news():
     return webbrowser.open_new("https://news.google.com/topstories?hl=en-IN&gl=IN&ceid=IN%3Aen")
@@ -83,14 +81,14 @@ def powers():
 #Keyword List
 
 keyword =     {1: ["open","access","take me","enter"],
-               2: ["hear","listen","play"],
+               2: ["listen","play"],
                3: ["google","search"],
                4: ["highlights", "updates", "news"],
                5: ["date", "time"],
                7:["powers", "abilities", "features","what can you do", "what have you got"],
                8:["create"],
-               9:["add","insert","append","put"],
                10:["delete","remove","clear"],
+               9:["add","insert","append","put"],
                11:["show","read","display","todo"],
                12:["modify","replace","change","convert"],
                }
@@ -107,23 +105,32 @@ greetings=["Heyyy!","Nice to meet you earthling.","Hai","Hey there!","hi"]
 feelings=["Im fine!" , "Better than ever!", "Never felt better!" , "Always better than before"]
 
 def todo():#choice 12
-    with open(r"todo") as f:
-        return f.read() if os.stat("todo").st_size!=0 else "The list is empty. There is nothing to display here"
+    try:
+        with open("todo","r+") as f:
+            return f.read() if os.stat("todo").st_size!=0 else "The list is empty. There is nothing to display here"
+    except:
+        with open("todo","w+") as f:
+            return "The list is empty. There is nothing to display here"
+
 
 def add(msg):
     for i in msg.split():
         if i.lower() in ["add","insert","append","put"]:
-            keyword=i.lower()
+            keyword = i
             with open("todo","a") as f:
-                w = msg.lower().split()
-                f.write("\n"+"--->"+' '.join(x for x in w[(w.index(keyword)+1):])+"\n")
-            return "Added "+' '.join(x for x in w[(w.index(keyword)+1):])
+                elem = msg.rpartition(keyword+" ")[-1]
+                if os.stat("todo").st_size!=0:
+                    f.write(elem+"\n")
+                else:
+                    f.write(elem + "\n")
+            return "Added "+elem
 
 def delete(msg):
     del_words=["all","clear"]
     for i in msg.split():
         if any(x for x in msg.lower().split() if x in del_words):
             f = open("todo", "w")
+            f.write("\n\n")
             f.close()
             return "Deleted all elements"
         elif i.lower() in ["delete","remove"]:
@@ -131,23 +138,28 @@ def delete(msg):
             with open("todo","r") as f:
                 w = msg.split()
                 d = " ".join(x for x in w[(w.index(keyword)+1):])
-                new_data = ' '.join(x for x in f.readlines() if d not in x)
-            with open("todo","w") as g:
+                new_data = '\n'.join(x for x in f.readlines() if d not in x)
+            with open("todo","w+") as g:
                 g.write(new_data)
             return "Deleted "+d
 
 
 def create():
     f=open("todo","w+")
+    f.write("\n")
     f.close()
     return "List created. You can now start adding elements. Once you are done, you can read it, delete items and do other necessary actions"
 
 def mod(imp_data):
     with open(r"todo") as f:
-        new_text=f.read().replace(imp_data[0],imp_data[1])
-    with open("todo", "w+") as g:
-        g.write(new_text)
+        dat ="\n\n"+"\n".join([x if x!=imp_data[0] else imp_data[1] for x in f.read().split()])
+    with open("todo","w+") as g:
+        g.write(dat)
     return todo()
+
+
+
+
 
 
 
