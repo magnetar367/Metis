@@ -4,7 +4,6 @@ import pywhatkit
 import datetime
 import random
 import os
-from selenium import webdriver
 #1) Abilities Using webbrowser
 
 def search(website):
