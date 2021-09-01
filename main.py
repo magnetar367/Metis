@@ -24,24 +24,24 @@ def get_response(msg):#~Fixed
             elif len(msg.lower()) >= 2 and msg.lower()[0] in "hy" and msg.lower().split(" ")[0] != "hear":
                 return ab.greeting()
 
-
-
-
-
     # Performing the activities
 
-    if choice == 1:#Opening website
-        website=lambda x:"".join(i for i in x[x.index(key)+1:])
-        ab.search(website(msg.lower().split()))
+    if choice == 1:
+
+        website = lambda x: (lambda y: ("".join(y[-1])).strip())(x.partition(key))
+        ab.search(website(msg.lower()))
         return "Website Opened!!!"
 
-    elif choice == 2:#Playing Music
+    elif choice == 2:
+
         song =' '.join(x for x in msg.split(" ") if x not in "listentoplaymusic")
         ab.music(song)
         return "Hope you were able to listen to the music"
 
-    elif choice == 3:#googlesearch~Fixed
+    elif choice == 3:
+
         keys =msg.lower().split(" ")
+
         try:
             gindex = keys.index("google") + 1
             post = keys[gindex:]
@@ -52,30 +52,38 @@ def get_response(msg):#~Fixed
         ab.googlesearch(site)
         return "searched for you!!!"
 
-    elif choice == 4:#news~Fixed
+    elif choice == 4:
+
         ab.news()
         return "I hope it worked out well and good"
 
-    elif choice == 5:#DateTime~Fixed
+    elif choice == 5:
+
         return ab.cur_date_time(msg)
 
     elif choice == 6:
+
         return ab.byebye()
 
 
     elif choice == 7:
+
         return ab.powers()
 
-    elif choice == 13:#Gratitudes~Fixed
+    elif choice == 13:
+
         return ab.gratitude()
 
     elif choice == 8:
+
         return ab.create()
 
     elif choice == 9:
+
         return ab.add(msg)
 
     elif choice == 10:
+
         return ab.delete(msg)
 
     elif choice == 11:
@@ -86,5 +94,7 @@ def get_response(msg):#~Fixed
         unnec_w =["with","to","into"]
         imp_data=[x for x in msg.split()[msg.lower().split().index(key) + 1:] if x not in unnec_w]
         return ab.mod(imp_data)
+
     else:
+
         return ab.dont_know()

@@ -2,8 +2,6 @@ from tkinter import *
 from main import get_response
 import pyglet
 
-
-
 animation= pyglet.image.load_animation('7a9b8077fd3b55d8ab72bdb6864f9448.gif')
 sprite = pyglet.sprite.Sprite(img=animation)
 w=sprite.width
@@ -28,7 +26,7 @@ splash_root.title('virtual chat assistant')
 splash_root.geometry("470x491")
 
 # Set Label
-photo= PhotoImage(file='2.png')
+photo= PhotoImage(file='2.png')#Update to be made here!
 splash_label = Label(splash_root, text="Splash Screen", font=18 ,image=photo)
 splash_label.pack()
 
