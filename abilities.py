@@ -9,7 +9,7 @@ import os
 def search(website):
 
     url = f"{website}.com"
-    chromepath_options = ["c:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+    chromepath_options = [r"c:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
                           r"C:\Program Files\Google\Chrome\Application\chrome.exe"]
     for i in chromepath_options:
         if os.path.exists(i) == True:
