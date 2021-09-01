@@ -8,9 +8,17 @@ from selenium import webdriver
 #1) Abilities Using webbrowser
 
 def search(website):
-    driver = webdriver.Chrome()
-    driver.maximize_window()
-    driver.get(f"https://www.{website}.com")
+
+    url = f"{website}.com"
+    chromepath_options = ["c:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                          r"C:\Program Files\Google\Chrome\Application\chrome.exe"]
+    for i in chromepath_options:
+        if os.path.exists(i) == True:
+            chromepath = i
+        else:
+            chromepath = i
+    webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chromepath))
+    return webbrowser.get("chrome").open_new(url)
 
 def news():
     return webbrowser.open_new("https://news.google.com/topstories?hl=en-IN&gl=IN&ceid=IN%3Aen")
