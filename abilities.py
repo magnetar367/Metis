@@ -52,7 +52,7 @@ def cur_date_time(msg):
     elif "date" in msg:
         return "Current date is %s/%s/%s" % (e.day,e.month,e.year)
     else:
-        return "Current time is %s/%s/%s" % (e.hour, e.minute, e.second)
+        return "Current time is %s:%s:%s" % (e.hour, e.minute, e.second)
 
 #4) Abilities to Answer personal question
 
